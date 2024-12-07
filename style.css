@@ -74,3 +74,38 @@ body {
 .color-cell.blue {
     background: rgb(83, 15, 255);
 }
+
+.tool-cell {
+    background: transparent;
+    border: 1px solid white;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.tool-cell img {
+    width: 80%;
+}
+
+.fill-tool {
+    background: transparent;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.fill-tool img {
+    width: 80%;
+}
+
+.selected {
+    outline: 2px solid black;
+    border: 2px solid black;
+    box-sizing: border-box;
+}
+
+.selected:hover {
+    transform: scale(1);
+}
