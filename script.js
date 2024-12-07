@@ -18,7 +18,8 @@ let DEFAULT_COLOR = getComputedStyle(document.documentElement).getPropertyValue(
 let FILL_MODE = false;
 let COLORS = ['rgb(62, 62, 62', 'rgb(255, 102, 46)',
               'rgb(26, 218, 84)', 'rgb(83, 15, 255)', 
-              'rgb(255, 236, 26)', 'rgb(142, 229, 255)'];
+              'rgb(255, 236, 26)', 'rgb(142, 229, 255)',
+              'rgb(118, 0, 197)'];
 
 document.addEventListener('mousedown', () => IS_CLICKED = true);
 document.addEventListener('mouseup', () => IS_CLICKED = false);
@@ -33,14 +34,23 @@ if (temp_result != '0') {
         cell.classList.add('cell');
         cell.setAttribute('id', `${i}`);
         cell.dataset.color = temp_result[i];
-        cell.style.backgroundColor = COLORS[parseInttemp_result[i]];
+        cell.style.backgroundColor = COLORS[parseInt(temp_result[i])];
         field.appendChild(cell);
     }
+}   else {
+    for (let i = 0; i < 450; i++) {
+        let cell = document.createElement('div');
+        cell.classList.add('cell');
+        cell.setAttribute('id', `${i}`);
+        cell.dataset.color = '0';
+        cell.style.backgroundColor = COLORS[0];
+        field.appendChild(cell);
+    }   
 }
 
 let cells = document.querySelectorAll('.cell');
 cells.forEach((cell) => {
-    cell.addEventListener('click', () => {
+    cell.addEventListener('mouseover', () => {
         if (IS_CLICKED) {
             anime({
                 targets: cell,
@@ -48,7 +58,7 @@ cells.forEach((cell) => {
                 duration: 200,
                 easing: 'linear'
             })
-            cell.dataset.color = CURRENT_COLOR;
+            cell.dataset.color = CURRENT_COLORCODE;
         }
     
     })
@@ -112,7 +122,7 @@ setInterval(() => {
 }, 60000)
 
 document.querySelector('.save-tool').addEventListener('click', () => {
-    domtoimage.tojpeg(field, {quality: 2})
+    domtoimage.toJpeg(field, {quality: 2})
     .then((dataUrl) => {
         let link = document.createElement('a');
         link.download = 'pixel.jpg';
